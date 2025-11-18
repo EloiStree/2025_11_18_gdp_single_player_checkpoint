@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://io1fmhhbjlp7"]
+
+[ext_resource type="Script" uid="uid://b1qn17itwlqh7" path="res://addons/2025_11_18_gdp_single_player_checkpoint/scripts/moving_sphere_for_testing.gd" id="1_es87b"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_nak20"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_30asc"]
+
+[node name="RandomMoveSphereTest" type="RigidBody3D" node_paths=PackedStringArray("what_to_move_root")]
+script = ExtResource("1_es87b")
+what_to_move_root = NodePath(".")
+move_range = Vector3(3.5, 3.5, 3.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_nak20")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_30asc")

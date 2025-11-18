@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://du6sm0vdp7suk"]
+
+[ext_resource type="Script" uid="uid://carc6vh7w88fd" path="res://addons/2025_11_18_gdp_single_player_checkpoint/scripts/default_observed_checkpoints.gd" id="1_kh3rl"]
+[ext_resource type="PackedScene" uid="uid://c5k8d2tik4wtj" path="res://addons/2025_11_18_gdp_single_player_checkpoint/scene/element/default_checkpoint.tscn" id="1_q1w6s"]
+[ext_resource type="PackedScene" uid="uid://io1fmhhbjlp7" path="res://addons/2025_11_18_gdp_single_player_checkpoint/scene/element/random_move_sphere_test.tscn" id="3_xebub"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CheckPoints" type="Node3D" parent="." node_paths=PackedStringArray("target_checkpoints")]
+script = ExtResource("1_kh3rl")
+target_checkpoints = [NodePath("DefaultCheckpoint"), NodePath("DefaultCheckpoint2"), NodePath("DefaultCheckpoint3"), NodePath("DefaultCheckpoint4"), NodePath("DefaultCheckpoint5")]
+
+[node name="DefaultCheckpoint" parent="CheckPoints" instance=ExtResource("1_q1w6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89024925, 0.86368, 2.0524983)
+
+[node name="DefaultCheckpoint2" parent="CheckPoints" instance=ExtResource("1_q1w6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5620346, 0.86368, 2.0524983)
+
+[node name="DefaultCheckpoint3" parent="CheckPoints" instance=ExtResource("1_q1w6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5620346, 0.86368, -0.49876308)
+
+[node name="DefaultCheckpoint4" parent="CheckPoints" instance=ExtResource("1_q1w6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5620346, 2.6021314, -0.49876308)
+
+[node name="DefaultCheckpoint5" parent="CheckPoints" instance=ExtResource("1_q1w6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86351967, 2.6021314, -1.9926562)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.1687975)
+
+[node name="RandomMoveSphereTest" parent="." instance=ExtResource("3_xebub")]
+gravity_scale = 0.0
+
+[connection signal="on_is_all_node_disabled" from="CheckPoints" to="CheckPoints" method="debug_log" binds= ["Test"]]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5k8d2tik4wtj"]
+
+[ext_resource type="Material" uid="uid://blwqdnjyv0fho" path="res://addons/2025_11_18_gdp_single_player_checkpoint/materials/mat_default_checkpoint.tres" id="1_ve7ys"]
+[ext_resource type="Script" uid="uid://dm81k4o8uh4ls" path="res://addons/2025_11_18_gdp_single_player_checkpoint/scripts/tag_checkpoint_node.gd" id="2_o65mu"]
+[ext_resource type="Script" uid="uid://bg51es7r7t1n8" path="res://addons/2025_11_18_gdp_single_player_checkpoint/scripts/hide_if_colllision_detected.gd" id="3_asqud"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_33wl3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_33wl3"]
+
+[node name="DefaultCheckpoint" type="Node3D" node_paths=PackedStringArray("checkpoint_root_node3d")]
+script = ExtResource("2_o65mu")
+checkpoint_root_node3d = NodePath(".")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_33wl3")
+surface_material_override/0 = ExtResource("1_ve7ys")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_33wl3")
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("area_to_listen_to", "target_node_to_hide")]
+script = ExtResource("3_asqud")
+area_to_listen_to = NodePath("../Area3D")
+target_node_to_hide = NodePath("..")
